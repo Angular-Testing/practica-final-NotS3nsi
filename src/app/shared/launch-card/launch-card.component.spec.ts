@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Launch } from 'src/app/models/launch';
 import { LAUNCHES } from 'tests/assets/launches';
 import { LaunchCardComponent } from './launch-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({
   template: `<ab-launch-card
@@ -34,8 +35,9 @@ describe('GIVEN the LaunchCardComponent on a Host component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [LaunchCardComponent, LaunchCardHostComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -52,7 +54,7 @@ describe('GIVEN the LaunchCardComponent on a Host component', () => {
     });
     it('THEN should display the launch name', () => {
       const actual = hostFixture.nativeElement.querySelector('#launch-name').textContent;
-      const expected = 'LaunchName';
+      const expected = LAUNCHES[0].name;
       expect(actual).toBe(expected);
     });
   });
@@ -91,8 +93,8 @@ describe('GIVEN the LaunchCardComponent on a Host component', () => {
       hostFixture.nativeElement.querySelector(addFavSelector).click();
     });
     it('THEN should emit the addToFavorites event with the correct launch slug', () => {
-      const expected = 'LaunchSlug'
-      expect(hostComponent.addToFavorites).toHaveBeenCalledWith(expected)
+      const expected = LAUNCHES[0].slug;
+      expect(hostComponent.addToFavorites).toHaveBeenCalledWith(expected);
     });
   });
 
@@ -106,8 +108,8 @@ describe('GIVEN the LaunchCardComponent on a Host component', () => {
       hostFixture.nativeElement.querySelector(removeFavSelector).click();
     });
     it('THEN should emit the removeFromFavorites event with the correct launch slug', () => {
-      const expected = 'LaunchSlug'
-      expect(hostComponent.removeFromFavorites).toHaveBeenCalledWith(expected)
+      const expected = LAUNCHES[0].slug;
+      expect(hostComponent.removeFromFavorites).toHaveBeenCalledWith(expected);
     });
   });
 });
