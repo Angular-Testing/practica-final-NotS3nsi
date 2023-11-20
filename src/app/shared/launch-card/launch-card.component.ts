@@ -6,7 +6,7 @@ import { Launch } from 'src/app/models/launch';
   template: `
     <aside *ngIf="launch">
       <h3>
-        <a [routerLink]="['/launch/' + launch.slug]"> {{ launch.name }}</a>
+        <a id="launch-name" [routerLink]="['/launch/' + launch.slug]">{{ launch.name }}</a>
       </h3>
 
       <time>
@@ -18,10 +18,10 @@ import { Launch } from 'src/app/models/launch';
       <ab-location [launch]="launch"></ab-location>
       <ab-mission [launch]="launch"></ab-mission>
       <ab-service-provider [launch]="launch"></ab-service-provider>
-      <button *ngIf="allowAddToFavorites" (click)="onClicAddToFavorites()">
+      <button data-testid="add-fav-button" *ngIf="allowAddToFavorites" (click)="onClicAddToFavorites()">
         Add to favorites 🤍
       </button>
-      <button *ngIf="allowRemoveFromFavorites" (click)="onClicRemoveFromFavorites()">
+      <button data-testid="remove-fav-button" *ngIf="allowRemoveFromFavorites" (click)="onClicRemoveFromFavorites()">
         Remove from favorites 💔
       </button>
     </aside>
