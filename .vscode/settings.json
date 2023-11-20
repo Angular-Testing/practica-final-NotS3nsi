@@ -19,7 +19,7 @@
   },
   "editor.codeActionsOnSave": [
     "source.addMissingImports",
-    "source.organizeImports",
+    // "source.organizeImports",
     "source.fixAll",
     "source.fixAll.eslint"
   ],
